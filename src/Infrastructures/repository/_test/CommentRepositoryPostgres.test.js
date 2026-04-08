@@ -6,7 +6,6 @@ import ThreadsTableTestHelper from '../../../../tests/ThreadsTableTestHelper.js'
 import UsersTableTestHelper from '../../../../tests/UsersTableTestHelper.js';
 import CommentLikesTableTestHelper from '../../../../tests/CommentLikesTableTestHelper.js';
 import NotFoundError from '../../../Commons/exceptions/NotFoundError.js';
-import { nanoid } from 'nanoid';
 
 describe('CommentRepositoryPostgres', () => {
   let commentRepository;
