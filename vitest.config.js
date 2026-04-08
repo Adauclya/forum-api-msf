@@ -14,6 +14,7 @@ export default defineConfig({
       NODE_ENV: 'test',
     },
     fileParallelism: false,
+    pool: 'threads',
     poolOptions: {
       threads: {
         singleThread: true,

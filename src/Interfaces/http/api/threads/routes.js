@@ -11,6 +11,7 @@ const createThreadsRouter = (handler, container) => {
   router.delete('/:threadId/comments/:commentId', authenticate, handler.deleteCommentHandler);
   router.post('/:threadId/comments/:commentId/replies', authenticate, handler.postReplyHandler);
   router.delete('/:threadId/comments/:commentId/replies/:replyId', authenticate, handler.deleteReplyHandler);
+  router.put('/:threadId/comments/:commentId/likes', authenticate, handler.putCommentLikeHandler);
 
   return router;
 };

@@ -22,6 +22,7 @@ describe('GetThreadDetailUseCase', () => {
 
     const mockCommentRepository = {
       getCommentsByThreadId: vi.fn().mockImplementation(() => Promise.resolve([])),
+      getLikeCountByCommentId: vi.fn(),
     };
 
     const mockReplyRepository = {
@@ -100,6 +101,7 @@ describe('GetThreadDetailUseCase', () => {
 
     const mockCommentRepository = {
       getCommentsByThreadId: vi.fn().mockImplementation(() => Promise.resolve(mockComments)),
+      getLikeCountByCommentId: vi.fn().mockImplementation(() => Promise.resolve(2)),
     };
 
     const mockReplyRepository = {
@@ -122,7 +124,11 @@ describe('GetThreadDetailUseCase', () => {
     expect(threadDetail.comments[0].replies).toHaveLength(2);
     expect(threadDetail.comments[0].replies[0].content).toEqual('sebuah reply');
     expect(threadDetail.comments[0].replies[1].content).toEqual('**balasan telah dihapus**');
+    expect(threadDetail.comments[0].likeCount).toEqual(2);
+    expect(threadDetail.comments[1].likeCount).toEqual(2);
     expect(mockReplyRepository.getRepliesByCommentId).toHaveBeenCalledWith('comment-123');
     expect(mockReplyRepository.getRepliesByCommentId).toHaveBeenCalledWith('comment-456');
+    expect(mockCommentRepository.getLikeCountByCommentId).toHaveBeenCalledWith('comment-123');
+    expect(mockCommentRepository.getLikeCountByCommentId).toHaveBeenCalledWith('comment-456');
   });
 });

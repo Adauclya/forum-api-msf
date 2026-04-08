@@ -22,7 +22,8 @@ describe('CommentDetail entities', () => {
       username: 'dicoding',
       date: '2023',
       content: 'sebuah comment',
-      replies: {},
+      replies: [],
+      likeCount: '0',
     };
 
     // Action & Assert
@@ -37,6 +38,7 @@ describe('CommentDetail entities', () => {
       date: new Date(),
       content: 'sebuah comment',
       replies: [],
+      likeCount: 0,
     };
 
     // Action
@@ -48,5 +50,6 @@ describe('CommentDetail entities', () => {
     expect(commentDetail.date).toEqual(payload.date);
     expect(commentDetail.content).toEqual(payload.content);
     expect(commentDetail.replies).toEqual(payload.replies);
+    expect(commentDetail.likeCount).toEqual(payload.likeCount);
   });
 });

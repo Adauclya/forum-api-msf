@@ -14,10 +14,12 @@ class GetThreadDetailUseCase {
     const thread = await this._threadRepository.getThreadById(threadId);
     const comments = await this._commentRepository.getCommentsByThreadId(threadId);
 
-    // Get replies for each comment and map entities
+    // Get replies and like count for each comment and map entities
     const commentsWithReplies = await Promise.all(
       comments.map(async (comment) => {
         const replies = await this._replyRepository.getRepliesByCommentId(comment.id);
+        const likeCount = await this._commentRepository.getLikeCountByCommentId(comment.id);
+
         const mappedReplies = replies.map((reply) => new ReplyDetail({
           ...reply,
           content: reply.isDelete ? '**balasan telah dihapus**' : reply.content,
@@ -27,6 +29,7 @@ class GetThreadDetailUseCase {
           ...comment,
           content: comment.isDelete ? '**komentar telah dihapus**' : comment.content,
           replies: mappedReplies,
+          likeCount,
         });
       }),
     );
