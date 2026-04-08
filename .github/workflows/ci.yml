@@ -46,16 +46,19 @@ jobs:
       - name: Run migrations
         run: npx node-pg-migrate up
         env:
-          DATABASE_URL: postgresql://postgres:password@localhost:5432/forumapi_test
+          DATABASE_URL: postgresql://${{ secrets.PGUSER }}:${{ secrets.PGPASSWORD }}@${{ secrets.PGHOST }}:${{ secrets.PGPORT }}/${{ secrets.PGDATABASE_TEST || secrets.PGDATABASE }}
 
       - name: Run tests
         run: npm run test
         env:
-          PGHOST: localhost
-          PGUSER: postgres
-          PGPASSWORD: password
-          PGDATABASE: forumapi_test
-          PGPORT: 5432
+          PGHOST: ${{ secrets.PGHOST }}
+          PGUSER: ${{ secrets.PGUSER }}
+          PGPASSWORD: ${{ secrets.PGPASSWORD }}
+          PGDATABASE: ${{ secrets.PGDATABASE_TEST || secrets.PGDATABASE }}
+          PGPORT: ${{ secrets.PGPORT }}
+          NODE_ENV: test
+          ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
+          REFRESH_TOKEN_KEY: ${{ secrets.REFRESH_TOKEN_KEY }}
 
   deploy:
     needs: test
