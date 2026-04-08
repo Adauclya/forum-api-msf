@@ -65,14 +65,14 @@ describe('GetThreadDetailUseCase', () => {
         username: 'johndoe',
         date: new Date(),
         content: 'sebuah comment',
-        is_delete: false,
+        isDelete: false,
       },
       {
         id: 'comment-456',
         username: 'dicoding',
         date: new Date(),
         content: 'sebuah comment dihapus',
-        is_delete: true,
+        isDelete: true,
       },
     ];
 
@@ -82,14 +82,14 @@ describe('GetThreadDetailUseCase', () => {
         username: 'dicoding',
         date: new Date(),
         content: 'sebuah reply',
-        is_delete: false,
+        isDelete: false,
       },
       {
         id: 'reply-456',
         username: 'johndoe',
         date: new Date(),
         content: 'sebuah reply dihapus',
-        is_delete: true,
+        isDelete: true,
       },
     ];
 

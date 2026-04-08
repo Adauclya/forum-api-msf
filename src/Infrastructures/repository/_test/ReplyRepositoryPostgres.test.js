@@ -97,7 +97,7 @@ describe('ReplyRepositoryPostgres', () => {
       expect(replies[0].id).toEqual('reply-123');
       expect(replies[0].content).toEqual('sebuah reply');
       expect(replies[0].username).toEqual('dicoding');
-      expect(replies[0].is_delete).toBe(false);
+      expect(replies[0].isDelete).toBe(false);
     });
 
     it('should return replies with is_delete true when reply is deleted', async () => {
@@ -120,7 +120,7 @@ describe('ReplyRepositoryPostgres', () => {
       // Assert
       expect(replies).toHaveLength(1);
       expect(replies[0].content).toEqual('sebuah reply');
-      expect(replies[0].is_delete).toBe(true);
+      expect(replies[0].isDelete).toBe(true);
     });
   });
 

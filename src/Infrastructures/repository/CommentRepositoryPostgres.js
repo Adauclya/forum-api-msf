@@ -1,7 +1,6 @@
 import NotFoundError from '../../Commons/exceptions/NotFoundError.js';
 import InvariantError from '../../Commons/exceptions/InvariantError.js';
 import CommentRepository from '../../Domains/comments/CommentRepository.js';
-import CommentDetail from '../../Domains/comments/entities/CommentDetail.js';
 
 class CommentRepositoryPostgres extends CommentRepository {
   constructor(pool, idGenerator) {
@@ -45,7 +44,7 @@ class CommentRepositoryPostgres extends CommentRepository {
       username: row.username,
       date: row.created_at,
       content: row.content,
-      is_delete: row.is_delete,
+      isDelete: row.is_delete,
     }));
   }
 

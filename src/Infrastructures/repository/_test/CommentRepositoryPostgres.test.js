@@ -100,7 +100,7 @@ describe('CommentRepositoryPostgres', () => {
       // Assert
       expect(comments).toHaveLength(1);
       expect(comments[0].content).toEqual('sebuah comment');
-      expect(comments[0].is_delete).toBe(true);
+      expect(comments[0].isDelete).toBe(true);
     });
   });
 

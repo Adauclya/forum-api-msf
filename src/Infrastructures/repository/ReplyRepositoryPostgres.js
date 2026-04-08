@@ -1,7 +1,6 @@
 import NotFoundError from '../../Commons/exceptions/NotFoundError.js';
 import InvariantError from '../../Commons/exceptions/InvariantError.js';
 import ReplyRepository from '../../Domains/replies/ReplyRepository.js';
-import ReplyDetail from '../../Domains/replies/entities/ReplyDetail.js';
 
 class ReplyRepositoryPostgres extends ReplyRepository {
   constructor(pool, idGenerator) {
@@ -45,7 +44,7 @@ class ReplyRepositoryPostgres extends ReplyRepository {
       username: row.username,
       date: row.created_at,
       content: row.content,
-      is_delete: row.is_delete,
+      isDelete: row.is_delete,
     }));
   }
 

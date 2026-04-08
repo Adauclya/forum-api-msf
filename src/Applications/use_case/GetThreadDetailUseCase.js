@@ -20,12 +20,12 @@ class GetThreadDetailUseCase {
         const replies = await this._replyRepository.getRepliesByCommentId(comment.id);
         const mappedReplies = replies.map((reply) => new ReplyDetail({
           ...reply,
-          content: reply.is_delete ? '**balasan telah dihapus**' : reply.content,
+          content: reply.isDelete ? '**balasan telah dihapus**' : reply.content,
         }));
 
         return new CommentDetail({
           ...comment,
-          content: comment.is_delete ? '**komentar telah dihapus**' : comment.content,
+          content: comment.isDelete ? '**komentar telah dihapus**' : comment.content,
           replies: mappedReplies,
         });
       }),
