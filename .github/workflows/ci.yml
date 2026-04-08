@@ -44,24 +44,18 @@ jobs:
         run: npm run lint
 
       - name: Run migrations
-        run: npm run migrate:test
+        run: npx node-pg-migrate up
         env:
-          PGHOST_TEST: localhost
-          PGUSER_TEST: postgres
-          PGPASSWORD_TEST: password
-          PGDATABASE_TEST: forumapi_test
-          PGPORT_TEST: 5432
-          # In case it uses DATABASE_URL
           DATABASE_URL: postgresql://postgres:password@localhost:5432/forumapi_test
 
       - name: Run tests
         run: npm run test
         env:
-          PGHOST_TEST: localhost
-          PGUSER_TEST: postgres
-          PGPASSWORD_TEST: password
-          PGDATABASE_TEST: forumapi_test
-          PGPORT_TEST: 5432
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: password
+          PGDATABASE: forumapi_test
+          PGPORT: 5432
           ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
           REFRESH_TOKEN_KEY: ${{ secrets.REFRESH_TOKEN_KEY }}
 
