@@ -46,19 +46,19 @@ jobs:
       - name: Run migrations
         run: npx node-pg-migrate up
         env:
-          DATABASE_URL: postgresql://${{ secrets.PGUSER }}:${{ secrets.PGPASSWORD }}@${{ secrets.PGHOST }}:${{ secrets.PGPORT }}/${{ secrets.PGDATABASE_TEST || secrets.PGDATABASE }}
+          DATABASE_URL: postgresql://${{ secrets.PGUSER || 'postgres' }}:${{ secrets.PGPASSWORD || 'password' }}@${{ secrets.PGHOST || 'localhost' }}:${{ secrets.PGPORT || '5432' }}/${{ secrets.PGDATABASE_TEST || secrets.PGDATABASE || 'forumapi_test' }}
 
       - name: Run tests
         run: npm run test
         env:
-          PGHOST: ${{ secrets.PGHOST }}
-          PGUSER: ${{ secrets.PGUSER }}
-          PGPASSWORD: ${{ secrets.PGPASSWORD }}
-          PGDATABASE: ${{ secrets.PGDATABASE_TEST || secrets.PGDATABASE }}
-          PGPORT: ${{ secrets.PGPORT }}
+          PGHOST: ${{ secrets.PGHOST || 'localhost' }}
+          PGUSER: ${{ secrets.PGUSER || 'postgres' }}
+          PGPASSWORD: ${{ secrets.PGPASSWORD || 'password' }}
+          PGDATABASE: ${{ secrets.PGDATABASE_TEST || secrets.PGDATABASE || 'forumapi_test' }}
+          PGPORT: ${{ secrets.PGPORT || '5432' }}
           NODE_ENV: test
-          ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
-          REFRESH_TOKEN_KEY: ${{ secrets.REFRESH_TOKEN_KEY }}
+          ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY || 'secret_access_key' }}
+          REFRESH_TOKEN_KEY: ${{ secrets.REFRESH_TOKEN_KEY || 'secret_refresh_key' }}
 
   deploy:
     needs: test
