@@ -15,10 +15,8 @@ export default defineConfig({
     },
     fileParallelism: false,
     pool: 'threads',
-    poolOptions: {
-      threads: {
-        singleThread: true,
-      },
+    threads: {
+      singleThread: true,
     },
   },
 });

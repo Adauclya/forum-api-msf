@@ -12,7 +12,7 @@ describe('CommentRepositoryPostgres', () => {
   let commentRepository;
 
   beforeEach(async () => {
-    commentRepository = new CommentRepositoryPostgres(pool, nanoid);
+    commentRepository = new CommentRepositoryPostgres(pool, () => '123');
     await UsersTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();
     await CommentsTableTestHelper.cleanTable();
