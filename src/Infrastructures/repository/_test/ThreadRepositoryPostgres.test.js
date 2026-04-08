@@ -71,7 +71,7 @@ describe('ThreadRepositoryPostgres', () => {
 
     it('should throw NotFoundError when thread not found', async () => {
       // Act and Assert
-      expect(threadRepository.getThreadById('thread-xyz')).rejects.toThrow(NotFoundError);
+      await expect(threadRepository.getThreadById('thread-xyz')).rejects.toThrow(NotFoundError);
     });
   });
 
@@ -82,12 +82,12 @@ describe('ThreadRepositoryPostgres', () => {
       await ThreadsTableTestHelper.addThread({ id: 'thread-123', owner: 'user-123' });
 
       // Act and Assert
-      expect(threadRepository.verifyThreadExists('thread-123')).resolves.not.toThrow();
+      await expect(threadRepository.verifyThreadExists('thread-123')).resolves.not.toThrow();
     });
 
     it('should throw NotFoundError when thread does not exist', async () => {
       // Act and Assert
-      expect(threadRepository.verifyThreadExists('thread-xyz')).rejects.toThrow(NotFoundError);
+      await expect(threadRepository.verifyThreadExists('thread-xyz')).rejects.toThrow(NotFoundError);
     });
   });
 });

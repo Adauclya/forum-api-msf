@@ -83,6 +83,6 @@ describe('AddCommentUseCase', () => {
     });
 
     // Action & Assert
-    expect(addCommentUseCase.execute(useCasePayload)).rejects.toThrow(NotFoundError);
+    await expect(addCommentUseCase.execute(useCasePayload)).rejects.toThrow(NotFoundError);
   });
 });

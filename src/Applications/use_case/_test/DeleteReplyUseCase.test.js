@@ -76,6 +76,6 @@ describe('DeleteReplyUseCase', () => {
     });
 
     // Action & Assert
-    expect(deleteReplyUseCase.execute(useCasePayload)).rejects.toThrow(AuthorizationError);
+    await expect(deleteReplyUseCase.execute(useCasePayload)).rejects.toThrow(AuthorizationError);
   });
 });

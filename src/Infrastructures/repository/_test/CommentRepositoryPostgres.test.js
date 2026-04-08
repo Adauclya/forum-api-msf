@@ -116,12 +116,12 @@ describe('CommentRepositoryPostgres', () => {
       });
 
       // Act and Assert
-      expect(commentRepository.verifyCommentExists('comment-123', 'thread-123')).resolves.not.toThrow();
+      await expect(commentRepository.verifyCommentExists('comment-123', 'thread-123')).resolves.not.toThrow();
     });
 
     it('should throw NotFoundError when comment does not exist', async () => {
       // Act and Assert
-      expect(commentRepository.verifyCommentExists('comment-xyz', 'thread-123')).rejects
+      await expect(commentRepository.verifyCommentExists('comment-xyz', 'thread-123')).rejects
         .toThrow(NotFoundError);
     });
   });

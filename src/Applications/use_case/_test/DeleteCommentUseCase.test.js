@@ -62,6 +62,6 @@ describe('DeleteCommentUseCase', () => {
     });
 
     // Action & Assert
-    expect(deleteCommentUseCase.execute(useCasePayload)).rejects.toThrow(AuthorizationError);
+    await expect(deleteCommentUseCase.execute(useCasePayload)).rejects.toThrow(AuthorizationError);
   });
 });

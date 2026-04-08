@@ -141,12 +141,12 @@ describe('ReplyRepositoryPostgres', () => {
       });
 
       // Act and Assert
-      expect(replyRepository.verifyReplyExists('reply-123', 'comment-123')).resolves.not.toThrow();
+      await expect(replyRepository.verifyReplyExists('reply-123', 'comment-123')).resolves.not.toThrow();
     });
 
     it('should throw NotFoundError when reply does not exist', async () => {
       // Act and Assert
-      expect(replyRepository.verifyReplyExists('reply-xyz', 'comment-123')).rejects
+      await expect(replyRepository.verifyReplyExists('reply-xyz', 'comment-123')).rejects
         .toThrow(NotFoundError);
     });
   });
